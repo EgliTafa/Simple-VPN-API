@@ -1,58 +1,57 @@
-# Simple VPN App Frontend
+# Simple VPN App ASP.NET Core API
 
 ## Description
-The Simple VPN App Frontend is a user-friendly WPF application designed for secure login, registration, and VPN management, seamlessly interacting with an ASP.NET Core backend. This project utilizes technologies such as WPF, C#, .NET, and integrates with a backend built on ASP.NET Core.
+The Simple VPN App ASP.NET Core API is a robust backend service designed to handle user registration, authentication, and VPN management. It leverages modern technologies such as JWT for secure token-based authentication, OpenVPN.NET for VPN management, and ASP.NET Core Identity for managing user accounts and roles.
 
 ## Technologies Used
-- **WPF (Windows Presentation Foundation)**: For creating a rich desktop application interface.
-- **C#**: The primary programming language for the application logic.
-- **.NET**: The framework for building and running the application.
-- **ASP.NET Core**: The backend service providing authentication and VPN management APIs.
-- **Newtonsoft.Json**: For JSON serialization and deserialization.
-- **HttpClient**: For making HTTP requests to the backend APIs.
+- **ASP.NET Core**: The framework for building the backend API.
+- **JWT (JSON Web Tokens)**: For secure token-based authentication.
+- **OpenVPN.NET**: For managing VPN connections.
+- **ASP.NET Core Identity**: For handling user authentication and authorization.
+- **Entity Framework Core**: For database interactions.
+- **Microsoft.Extensions.Configuration**: For handling application settings and configuration.
 
 ## Features
-### User Registration
-- **Form-based Registration**: Users can create a new account by providing a username, first name, last name, email, and password.
-- **Validation**: Client-side validation ensures all required fields are filled out correctly before submission.
+### User Registration and Login
+- **Secure Registration**: Allows users to create accounts with username, password, and additional details.
+- **Token-Based Authentication**: Issues JWT tokens upon successful login for secure API access.
 
-### User Login
-- **Secure Login**: Users can log in with their credentials to access the VPN management features.
-- **Token-Based Authentication**: Upon successful login, a JWT token is retrieved and stored for authenticated requests.
+### VPN Management
+- **Connect to VPN**: Endpoint to initiate a VPN connection using OpenVPN.NET.
+- **Disconnect from VPN**: Endpoint to terminate the VPN connection.
+- **Status Monitoring**: Provides the current status of the VPN connection.
 
-### ~~VPN Management~~ WIP
-- **Connect to VPN**: Users can connect to the VPN using their credentials.
-- **Disconnect from VPN**: Users can disconnect from the VPN when it is no longer needed.
-- **Status Monitoring**: Users can check the status of their VPN connection.
-
-### JWT Authentication
-- **Secure API Requests**: All API requests are authenticated using JWT tokens, ensuring secure communication between the client and server.
-- **Token Handling**: The application automatically manages token storage and includes the token in the headers of all authenticated requests.
+### User Management
+- **Role-Based Access Control**: Manages user roles and permissions using ASP.NET Core Identity.
 
 ## How to Use
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/yourusername/simple-vpn-app-frontend.git
-    cd simple-vpn-app-frontend
+    git clone https://github.com/yourusername/simple-vpn-app-api.git
+    cd simple-vpn-app-api
     ```
 
-2. **Open the Solution**:
-   - Open the `Simple-VPN-App-Frontend.sln` file in Visual Studio.
+2. **Update the Configuration**:
+   - Update `appsettings.json` with your database connection string and JWT settings.
+   - Ensure the OpenVPN configuration files are correctly referenced in your application.
 
-3. **Restore NuGet Packages**:
+3. **Apply Migrations**:
    - In Visual Studio, go to `Tools` > `NuGet Package Manager` > `Package Manager Console` and run:
      ```sh
-     Update-Package -reinstall
+     Update-Database
      ```
 
-4. **Update API URLs**:
-   - Ensure the `apiURL` in `ApiService.cs` is pointing to your backend URL:
-     ```csharp
-     private readonly string apiURL = "https://localhost:7214";
-     ```
+4. **Run the Application**:
+   - Build and run the solution in Visual Studio by selecting `Build` > `Build Solution` and then `Debug` > `Start Debugging`.
 
-5. **Build and Run the Application**:
-   - Build the solution in Visual Studio by selecting `Build` > `Build Solution`.
-   - Run the application by selecting `Debug` > `Start Debugging`.
+5. **Testing the API**:
+   - Use tools like Postman or curl to interact with the API endpoints for registration, login, and VPN management.
 
+## Endpoints
+- **POST /Register**: Register a new user.
+- **POST /Login**: Authenticate a user and issue a JWT token.
+- **POST /Logout**: Log out the current user.
+- **POST /Vpn/Connect**: Connect to the VPN.
+- **POST /Vpn/Disconnect**: Disconnect from the VPN.
+- **GET /Vpn/Status**: Get the current VPN connection status.
 
