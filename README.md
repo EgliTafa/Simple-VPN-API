@@ -20,7 +20,7 @@ The Simple VPN App Frontend is a user-friendly WPF application designed for secu
 - **Secure Login**: Users can log in with their credentials to access the VPN management features.
 - **Token-Based Authentication**: Upon successful login, a JWT token is retrieved and stored for authenticated requests.
 
-### VPN Management
+### ~~VPN Management~~ WIP
 - **Connect to VPN**: Users can connect to the VPN using their credentials.
 - **Disconnect from VPN**: Users can disconnect from the VPN when it is no longer needed.
 - **Status Monitoring**: Users can check the status of their VPN connection.
@@ -55,15 +55,4 @@ The Simple VPN App Frontend is a user-friendly WPF application designed for secu
    - Build the solution in Visual Studio by selecting `Build` > `Build Solution`.
    - Run the application by selecting `Debug` > `Start Debugging`.
 
-## Screenshots
-*Include screenshots of the application here to give users a visual understanding of the application.*
-
-## License
-*Specify the license under which the project is distributed.*
-
-## Contributing
-*Provide guidelines on how to contribute to the project.*
-
-## Contact
-*Provide contact information or links to issues for user support.*
 
