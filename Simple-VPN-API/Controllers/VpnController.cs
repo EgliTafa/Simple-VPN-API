@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Simple_VPN_API.Data.Enums;
 using Simple_VPN_API.Data.Interfaces;
 using Simple_VPN_API.Models;
-using System;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace Simple_VPN_API.Controllers
 {
@@ -15,12 +12,12 @@ namespace Simple_VPN_API.Controllers
     [Route("[controller]")]
     public class VpnController : ControllerBase
     {
-        private readonly IVpnRepository _vpnRepository;
+        private readonly IVpnService _vpnService;
         private readonly UserManager<User> _userManager;
 
-        public VpnController(IVpnRepository vpnRepository, UserManager<User> userManager)
+        public VpnController(IVpnService vpnRepository, UserManager<User> userManager)
         {
-            _vpnRepository = vpnRepository;
+            _vpnService = vpnRepository;
             _userManager = userManager;
         }
 
@@ -31,7 +28,7 @@ namespace Simple_VPN_API.Controllers
             var user = await _userManager.FindByIdAsync(userId);
 
 
-            var result = await _vpnRepository.ConnectAsync(useTcp);
+            var result = await _vpnService.ConnectAsync(useTcp);
             if (result)
             {
                 
@@ -51,7 +48,7 @@ namespace Simple_VPN_API.Controllers
         
 
 
-            var result = await _vpnRepository.DisconnectAsync();
+            var result = await _vpnService.DisconnectAsync();
             if (result)
             {
                 return Ok("VPN disconnected successfully.");
@@ -63,7 +60,7 @@ namespace Simple_VPN_API.Controllers
         [HttpGet("status")]
         public async Task<IActionResult> GetStatus()
         {
-            var status = await _vpnRepository.GetStatusAsync();
+            var status = await _vpnService.GetStatusAsync();
             return Ok(status);
         }
     }

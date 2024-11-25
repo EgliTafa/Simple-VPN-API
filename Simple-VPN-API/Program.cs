@@ -78,7 +78,7 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-builder.Services.AddScoped<IVpnRepository, VpnRepository>();
+builder.Services.AddScoped<IVpnService, VpnService>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SimpleVPNConnectionString")));
